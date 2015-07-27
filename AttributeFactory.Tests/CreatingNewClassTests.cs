@@ -20,6 +20,16 @@ namespace AttributeFactory.Tests
             result.Should().BeAssignableTo<BasicClass>();
         }
 
+        [Test]
+        public void ShouldCreateAdvancedClass()
+        {
+            var factoryName = "Advanced";
+
+            var result = Create(factoryName);
+
+            result.Should().BeAssignableTo<AdvancedClass>();
+        }
+
         private object Create(string factoryName)
         {
             var typesWithMyAttribute =
@@ -43,6 +53,12 @@ namespace AttributeFactory.Tests
     public class BasicClass
     {
 
+    }
+
+    [AbstractFactory("Advanced")]
+    public class AdvancedClass
+    {
+        
     }
 
     [AttributeUsage(AttributeTargets.Class, Inherited = false, AllowMultiple = true)]
